@@ -17,10 +17,8 @@ public:
     bool batteryIsOk(){
         if(checkTemperature() && checkSoc() && checkChargeRate())
             return true;
-        else{
-            cout<<"Battery is NOT OK"<<endl;
-            return false;
-        }
+        cout<<"Battery is NOT OK"<<endl;
+        return false;
     }
 };
 
