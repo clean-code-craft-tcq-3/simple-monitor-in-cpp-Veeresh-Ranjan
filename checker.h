@@ -15,15 +15,15 @@ public:
     bool checkChargeRate(){
         return bmsPtr->monitorChargeRate();
     }
-    bool batteryIsOk(){
+    bool checkBattery(){
         batteryOk = checkTemperature() && checkSoc() && checkChargeRate();
-        /*batteryOk = checkSoc() && checkChargeRate();
-        batteryOk = checkChargeRate() && checkTemperature();
-        if (!batteryOk){
+        return batteryOk;
+    }
+    bool batteryIsOk(){
+        if (!checkBattery()){
             cout<<"Battery is NOT OK"<<endl;
             return false;
         }
-        return true;*/
-        return batteryOk;
+        return true;
     }
 };
