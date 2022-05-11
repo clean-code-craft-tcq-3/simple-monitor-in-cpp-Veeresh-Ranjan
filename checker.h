@@ -1,5 +1,6 @@
 #include"BMSForTesting.h"
 class checker{
+    bool batteryOk;
     BatteryManagemtSystem* bmsPtr;
 public:
     checker(BatteryManagemtSystem* bmsPtr){
@@ -14,12 +15,22 @@ public:
     bool checkChargeRate(){
         return bmsPtr->monitorChargeRate();
     }
-    /*bool batteryIsOk(){
-        if(checkTemperature() && checkSoc() && checkChargeRate())
-            return true;
-        else{
+    bool batteryIsOk(){
+        batteryOk = checkTemperature();
+        if (!batteryOk){
             cout<<"Battery is NOT OK"<<endl;
             return false;
         }
-    }*/
+        batteryOk = checkSoc();
+        if (!batteryOk){
+            cout<<"Battery is NOT OK"<<endl;
+            return false;
+        }
+        batteryOk = checkChargeRate();
+        if (!batteryOk){
+            cout<<"Battery is NOT OK"<<endl;
+            return false;
+        }
+        return true;
+    }
 };
