@@ -3,7 +3,7 @@
 class BatteryMgmtSystmTest : public BatteryManagemtSystem
 {
 public:
-    BatteryMgmtSystmTest(int temperature, int soc, int chargeRate):BatteryManagemtSystem(temperature,soc,chargeRate)
+    BatteryMgmtSystmTest(int temperature, int soc, float chargeRate):BatteryManagemtSystem(temperature,soc,chargeRate)
     {}
     bool monitorTemparature(){
         if(getTemperature() < TEMPERATURE_LOWER_LIMIT || getTemperature() > TEMPERATURE_UPPER_LIMIT) {

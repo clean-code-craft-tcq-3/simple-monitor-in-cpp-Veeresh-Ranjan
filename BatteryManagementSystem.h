@@ -9,9 +9,10 @@
 
 using namespace std;
 class Battery{
-    int temperature,soc,chargeRate;
+    int temperature,soc;
+    float chargeRate;
 public:
-    Battery(int temperature, int soc, int chargeRate){
+    Battery(int temperature, int soc, float chargeRate){
         this->temperature = temperature;
         this->soc = soc;
         this->chargeRate = chargeRate;
@@ -19,7 +20,7 @@ public:
     int getSoc(){
         return this->soc;
     }
-    int getChargeRate(){
+    float getChargeRate(){
         return this->chargeRate;
     }
     int getTemperature(){
@@ -30,7 +31,7 @@ public:
 class BatteryManagemtSystem : public Battery
 {
 public:
-    BatteryManagemtSystem(int temperature, int soc, int chargeRate):Battery(temperature,soc,chargeRate){}
+    BatteryManagemtSystem(int temperature, int soc, float chargeRate):Battery(temperature,soc,chargeRate){}
     virtual bool monitorTemparature() = 0;
     virtual bool monitorSoc() = 0;
     virtual bool monitorChargeRate() = 0;

@@ -11,5 +11,10 @@ int main() {
   checkerObj2.checkSoc();
   checkerObj2.checkChargeRate();
   checkerObj2.batteryIsOk();
+  checker checkerObj3(new BatteryMgmtSystmTest(15, 60, 0.9));
+  checkerObj3.checkTemperature();
+  checkerObj3.checkSoc();
+  checkerObj3.checkChargeRate();
+  checkerObj3.batteryIsOk();
 }
 
