@@ -35,5 +35,10 @@ public:
     virtual bool monitorTemparature() = 0;
     virtual bool monitorSoc() = 0;
     virtual bool monitorChargeRate() = 0;
+    virtual bool isValueInRange(float value, float upperLimit, float lowerLimit){
+        if (value > upperLimit || value < lowerLimit)
+            return false;
+        return true;
+    }
 };
 

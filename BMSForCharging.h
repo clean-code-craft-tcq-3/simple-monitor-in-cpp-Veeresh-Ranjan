@@ -6,21 +6,27 @@ public:
         //stop charging and Beep sound
     }
     bool monitorTemparature(){
-        while(getTemperature() >= TEMPERATURE_LOWER_LIMIT && getTemperature() <= TEMPERATURE_UPPER_LIMIT);
-        cout << "Temperature out of range!\n";
-        sendAlert();
-        return false;
+        if(!isValueInRange(getTemperature(),TEMPERATURE_UPPER_LIMIT,TEMPERATURE_LOWER_LIMIT))
+        {
+            cout << "Temperature out of range!\n";
+            sendAlert();
+            return false;
+        }
     }
     bool monitorSoc(){
-        while(getSoc() >= SOC_LOWER_LIMIT && getSoc() <= SOC_UPPER_LIMIT);
-        cout << "State of Charge out of range!\n";
-        sendAlert();
-        return false;
+        if(!isValueInRange(getSoc(),SOC_UPPER_LIMIT,SOC_LOWER_LIMIT))
+        {
+            cout << "State of Charge out of range!\n";
+            sendAlert();
+            return false;
+        }
     }
     bool monitorChargeRate(){
-        while(getChargeRate() <= CHARGE_RATE_UPPER_LIMIT);
-        cout << "Charge Rate out of range!\n";
-        sendAlert();
-        return false;
+        if(!isValueInRange(getChargeRate(),CHARGE_RATE_UPPER_LIMIT,0))
+        {
+            cout << "Charge Rate out of range!\n";
+            sendAlert();
+            return false;
+        }
     }
 };
