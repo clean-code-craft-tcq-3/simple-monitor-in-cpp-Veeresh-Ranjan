@@ -2,6 +2,8 @@
 class BatteryMgmtSystmForCharging : public BatteryManagemtSystem
 {
 public:
+    BatteryMgmtSystmForCharging(float temperature, float soc, float chargeRate):BatteryManagemtSystem(temperature,soc,chargeRate)
+    {}
     void sendAlert(){
         //stop charging and Beep sound
     }
@@ -18,6 +20,7 @@ public:
             sendAlert();
             return false;
         }
+        return true;
     }
     bool monitorSoc(){
         if(!isValueInRange(getSoc(),SOC_UPPER_LIMIT,SOC_LOWER_LIMIT))
@@ -26,6 +29,7 @@ public:
             sendAlert();
             return false;
         }
+        return true;
     }
     bool monitorChargeRate(){
         if(!isValueInRange(getChargeRate(),CHARGE_RATE_UPPER_LIMIT,0))
@@ -34,6 +38,7 @@ public:
             sendAlert();
             return false;
         }
+        return true;
     }
     bool monitorTemparatureForWarning(){
         if(!isValueInRange(getTemperature(),getWarningUpper(TEMPERATURE_UPPER_LIMIT),getWarningLower(TEMPERATURE_UPPER_LIMIT,TEMPERATURE_LOWER_LIMIT))) {

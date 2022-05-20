@@ -1,5 +1,5 @@
-#define English 0
-#define German 1
+#define English 1
+#define German 0
 #define Japanese 0
 #if (English)
     #define TEMP_OUT_OF_RANGE "Temperature out of range!"
