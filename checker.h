@@ -1,6 +1,6 @@
 #include"BMSForTesting.h"
 class checker{
-    bool batteryOk, batteryWarnOk;
+    bool batteryOkay, batteryWarnOkay;
     BatteryManagemtSystem* bmsPtr;
 public:
     checker(BatteryManagemtSystem* bmsPtr){
@@ -27,11 +27,17 @@ public:
     bool checkChargeRateWarning(){
         return bmsPtr->monitorChargeRateForWarning();
     }
+    bool batteryOk(){
+        batteryOkay = checkTemperature() && checkSoc() && checkChargeRate();
+        return batteryOkay;
+    }
+    bool batteryWarnOk(){
+        batteryWarnOkay = checkTempWarning() && checkSocWarning() && checkChargeRateWarning();
+        return batteryWarnOkay;
+    }
     bool checkBattery(){
-        batteryOk = checkTemperature() && checkSoc() && checkChargeRate();
-        batteryWarnOk = checkTempWarning() && checkSocWarning() && checkChargeRateWarning();
-        batteryOk = batteryOk && batteryWarnOk;
-        return batteryOk;
+        batteryOkay = batteryOk() && batteryWarnOk();
+        return batteryOkay;
     }
     bool batteryIsOk(){
         if (!checkBattery()){
